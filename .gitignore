@@ -1,0 +1,9 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea
+MySqlBulkInsert/BenchmarkDotNet.Artifacts
+MySqlBulkInsert/BenchmarkDotNet.Artifacts
+.idea

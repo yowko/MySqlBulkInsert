@@ -5,6 +5,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Bogus;
 using CsvHelper;
+using CsvHelper.Configuration.Attributes;
 using MySqlConnector;
 
 Console.WriteLine("Hello, World!");
@@ -123,7 +124,7 @@ public class MySqlService
             .RuleFor(a => a.Id, f => f.Random.ULong())
             .RuleFor(a => a.OrderDate, f => startDate.AddDays(f.Random.Number(0, 365 * 3)))
             .RuleFor(a => a.ProductId, f => f.Random.Number(1, 10000))
-            .RuleFor(a => a.OrderType, f => f.Random.Byte(1, 10))
+            .RuleFor(a => a.OrderType, f => f.Random.SByte(1, 10))
             .RuleFor(a => a.Amount, f => f.Random.Decimal(0M, 100000M));
         return order.Generate(BatchSize).ToArray();
     }
@@ -132,9 +133,10 @@ public class MySqlService
 
 public class Order
 {
+    [Ignore]
     public ulong Id { get; set; }
     public DateTime OrderDate { get; set; }
     public int ProductId { get; set; }
-    public Byte OrderType { get; set; }
+    public sbyte OrderType { get; set; }
     public decimal Amount { get; set; }
 }
